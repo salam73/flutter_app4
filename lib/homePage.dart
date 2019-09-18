@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -10,51 +11,71 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int myValue = 3;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-        ),
-        body: myBody()
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                MyWidget(
+                  colour: Colors.orange,
+                  cardWidget: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text('salam'),
+                      Text('salam'),
+                    ],
+                  ),
+                ),
+                MyWidget(
+                  colour: Colors.purple,
+                ),
+              ],
+            ),
+          ),
+          MyWidget(
+            colour: Colors.grey,
+            cardWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(myValue.toString()),
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: Colors.white,
+                    thumbColor: Color(0xffb15555),
+                    overlayColor: Color(0x29b15555),
+                  ),
+                  child: Slider(
+                    min: 0,
+                    max: 10,
+                    value: myValue.toDouble(),
+                    onChanged: (double newValue) {
+                      setState(() {
+                        myValue = newValue.round();
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          MyWidget(
+            colour: Colors.grey,
+          ),
+        ],
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
-}
-
-Widget myBody() {
-  return Column(
-    children: <Widget>[
-      Expanded(
-        child: Row(
-          children: <Widget>[
-            MyWidget(
-              colour: Colors.orange,
-              cardWidget: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-
-                  Text('salam'),
-                  Text('salam'),
-                ],
-              ),
-            ),
-            MyWidget(
-              colour: Colors.purple,
-            ),
-          ],
-        ),
-      ),
-      MyWidget(
-        colour: Colors.red,
-      ),
-      MyWidget(
-        colour: Colors.grey,
-      ),
-    ],
-  );
 }
 
 class MyWidget extends StatelessWidget {

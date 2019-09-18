@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-
-
   final String title;
 
   @override
@@ -12,36 +10,69 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body: myBody()
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
+  }
+}
 
-          mainAxisAlignment: MainAxisAlignment.center,
+Widget myBody() {
+  return Column(
+    children: <Widget>[
+      Expanded(
+        child: Row(
           children: <Widget>[
-            Text(
-              'You have pushed the button this many :',
-            ),
+            MyWidget(
+              colour: Colors.orange,
+              cardWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
 
+                  Text('salam'),
+                  Text('salam'),
+                ],
+              ),
+            ),
+            MyWidget(
+              colour: Colors.purple,
+            ),
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
+      MyWidget(
+        colour: Colors.red,
+      ),
+      MyWidget(
+        colour: Colors.grey,
+      ),
+    ],
+  );
+}
+
+class MyWidget extends StatelessWidget {
+  MyWidget({this.colour, this.cardWidget});
+
+  final Color colour;
+  final Widget cardWidget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+          margin: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: this.colour,
+          ),
+          child: cardWidget),
     );
   }
 }

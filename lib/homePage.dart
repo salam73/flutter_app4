@@ -68,8 +68,32 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          MyWidget(
-            colour: Colors.grey,
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                MyWidget(
+                  colour: Colors.white,
+                  cardWidget: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[RoundedButton()],
+                  ),
+                ),
+
+                MyWidget(
+                  colour: Colors.white,
+                  cardWidget:
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FloatingActionButton(
+
+                      ),
+                    ],
+                  ),
+                  // cardWidget: RoundedButton(),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -94,6 +118,22 @@ class MyWidget extends StatelessWidget {
             color: this.colour,
           ),
           child: cardWidget),
+    );
+  }
+}
+
+class RoundedButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: (){},
+      shape: CircleBorder(),
+      elevation: 6,
+      fillColor: Colors.red,
+      constraints: BoxConstraints.tightFor(
+        width: 40,
+        height: 40,
+      ),
     );
   }
 }

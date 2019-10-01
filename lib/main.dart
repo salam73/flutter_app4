@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app4/secondPage.dart';
 import 'homePage.dart';
 import 'package:flutter_app4/profiles/profile1.dart';
-
+import 'package:flutter_app4/profiles/profile2.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       //  primarySwatch: Colors.blue,
         brightness: Brightness.dark
       ),
-      home: Profile1(),
+      home: ProfileFivePage(),
+     // home: Profile1(),
       debugShowCheckedModeBanner: false,
     );
   }
